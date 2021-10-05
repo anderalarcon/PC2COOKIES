@@ -2,6 +2,7 @@ package pe.edu.ulima.pm.cookies
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import pe.edu.ulima.pm.cookies.fragments.RecetasFragment
 
@@ -20,4 +21,6 @@ class MainActivity : AppCompatActivity() {
 
         ft.commit()
     }
+
+    //override fun OnClick(it)
 }

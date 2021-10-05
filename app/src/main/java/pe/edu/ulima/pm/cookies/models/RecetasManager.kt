@@ -28,6 +28,9 @@ class RecetasManager {
     fun getRecetas() : List<Receta> {
         mRecetas.add(Receta(1,"Galletas de mantequilla","Roger",mIngredientes))
         mRecetas.add(Receta(2,"Galletas de avellanas","Achata",mIngredientes))
+        mRecetas.add(Receta(3,"Galletas de almendras","Quintana",mIngredientes))
+        mRecetas.add(Receta(4,"Galletas de Coco","Achata",mIngredientes))
+        mRecetas.add(Receta(5,"Galletas de Yogurt","Roger",mIngredientes))
         return mRecetas
     }
 
