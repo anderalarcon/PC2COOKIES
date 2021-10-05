@@ -6,10 +6,11 @@ import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-class LoginActivity:AppCompatActivity() {
-    private lateinit var eteUsername : EditText
+class LoginActivity : AppCompatActivity() {
+    private lateinit var etNombre: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -19,12 +20,26 @@ class LoginActivity:AppCompatActivity() {
         getSupportActionBar()?.hide()
         setContentView(R.layout.activity_login)
 
-        val butLogin : Button = findViewById(R.id.butIngresarVertical)
-        butLogin.setOnClickListener{ _ : View ->
-            val intent : Intent = Intent()
-            intent.setClass(this, MainActivity::class.java)
+        etNombre = findViewById(R.id.tviUsuario)
 
-            startActivity(intent)
+        val intent: Intent = Intent()
+
+        val butLogin: Button = findViewById(R.id.butIngresar)
+
+
+        butLogin.setOnClickListener { _: View ->
+            if(etNombre.text.toString()!=""){
+                val bundle:Bundle= Bundle()//Almacenamos data
+                bundle.putString("nombre",etNombre.text.toString())
+
+                intent.setClass(this, MainActivity::class.java) //pasamos next activity
+                intent.putExtra("data",bundle)//le ponemos al intent que es el que pasa
+                startActivity(intent)
+            }else{
+                Toast.makeText(this,"Ingresa tu nombre",Toast.LENGTH_SHORT).show()
+            }
+
+
 
         }
 
