@@ -3,25 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/receta0"
+    >
 
     <ImageView
         android:id="@+id/iviRecetaImage"
-        android:layout_width="0dp"
-        android:layout_height="195dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/galleta_land_shrek" />
+        android:layout_marginBottom="5dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/galletas1" />
 
     <TextView
         android:id="@+id/tviRecetaName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="4dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/teal_200"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/iviRecetaImage"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -29,9 +33,10 @@
         android:id="@+id/tviNombreUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="16dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

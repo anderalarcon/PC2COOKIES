@@ -27,7 +27,6 @@ class RecetasManager {
 
     fun getRecetas() : List<Receta> {
         mRecetas.add(Receta(1,"Galletas de mantequilla","Roger",mIngredientes))
-        mRecetas.add(Receta(2,"Galletas de avellanas","Achata",mIngredientes))
         return mRecetas
     }
 

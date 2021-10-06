@@ -21,12 +21,12 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.tviUser).text=username
 
 
+        //Recibimos las recetas en duro
         fragments.add(RecetasFragment())
-        //1.No vas a poder dar click en el view si lo haces en duro o saldrá con problemas
-        //2.Trata de no usar constraint layout
-        //3.ITEM RECETA HACERLO CON CUSTOM VIEW
+
+        //Renderizamos por primera vez el fragment en la posicion 0 osea recetas
         val ft = supportFragmentManager.beginTransaction()
-        ft.add(R.id.flaContent,fragments[0])
+        ft.add(R.id.contenedorRecetas,fragments[0])
 
         ft.commit()
     }

@@ -10,7 +10,7 @@ import pe.edu.ulima.pm.cookies.R
 import pe.edu.ulima.pm.cookies.models.Receta
 
 class RecetaListAdapter(private val RecetaList: List<Receta>) :
-    RecyclerView.Adapter<RecetaListAdapter.ViewHolder>()  {
+    RecyclerView.Adapter<RecetaListAdapter.ViewHolder>()  {// clase que va representar 1 item visual , este necesita los elementos del item , implementamos los metodos que solicita
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         val iviRecetaImage : ImageView
         val tviRecetaName : TextView
@@ -23,7 +23,7 @@ class RecetaListAdapter(private val RecetaList: List<Receta>) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {//FRONTEND
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_receta, parent, false)
 
@@ -31,12 +31,12 @@ class RecetaListAdapter(private val RecetaList: List<Receta>) :
         return viewHolder
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {//ATRIBUTOS
         holder.tviRecetaName.text = RecetaList[position].nombre
         holder.tviNombreUsuario.text = RecetaList[position].usuario
     }
 
-    override fun getItemCount(): Int {
+    override fun getItemCount(): Int {//CUANTOS SON
         return RecetaList.size
     }
 
