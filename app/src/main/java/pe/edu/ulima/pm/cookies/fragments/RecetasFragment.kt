@@ -38,6 +38,11 @@ class RecetasFragment : Fragment() {
 
     }*/
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        listener = context as OnRecetasSelectedListener
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -63,7 +68,7 @@ class RecetasFragment : Fragment() {
             recipe: Receta ->
 
             listener?.onSelect(recipe)
-            println("nombre: " + recipe.nombre)
+            /*println("nombre: " + recipe.nombre)
             println("usuario: " + recipe.usuario)
             for (i in recipe.ingredientes){
                 println("ingrediente: " +  i.nombre)
@@ -73,10 +78,10 @@ class RecetasFragment : Fragment() {
             bundle.putString("id",recipe.id.toString())
             bundle.putString("nombre",recipe.nombre.toString())
             bundle.putString("usuario",recipe.usuario.toString())
-            bundle.putString("ingredientes",recipe.ingredientes.toString())
+            bundle.putString("ingredientes",recipe.ingredientes.toString())*/
 
             //preguntar al profe como pasar a un activity
-           /* intent.setClass(getActivity(), VerRecetaActivity::class.java) //pasamos next activity
+           /* intent.setClass(this, VerRecetaActivity::class.java) //pasamos next activity
             intent.putExtra("data",bundle)//le ponemos al intent que es el que pasa
             startActivity(intent)*/
         }
