@@ -57,6 +57,17 @@ class RecetasManager {
         return imagenes
     }
 
+    fun deleteIngrediente(ingrediente:Ingrediente){
+        mIngredientes.remove(ingrediente)
+
+    }
+
+    fun mostrarIngredientes(){
+        for (i in mIngredientes){
+            println(i.nombre)
+        }
+    }
+
     fun getRandom(): String {
         var imgs=getImagenes()
 
@@ -64,6 +75,19 @@ class RecetasManager {
 
         return imgs[nro]
 
+    }
+
+    fun vaciarIngredientes(){
+        mIngredientes.clear()
+
+    }
+
+    fun llenarIngredientes(){
+        mIngredientes.add(Ingrediente("Mantequilla"))
+        mIngredientes.add(Ingrediente("Azucar"))
+        mIngredientes.add(Ingrediente("Harina"))
+        mIngredientes.add(Ingrediente("Vainilla"))
+        mIngredientes.add(Ingrediente("Polvo de Hornear"))
     }
 
 

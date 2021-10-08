@@ -17,14 +17,15 @@ import pe.edu.ulima.pm.cookies.models.Receta
 import pe.edu.ulima.pm.cookies.models.RecetasManager
 import javax.net.ssl.ManagerFactoryParameters
 
-class IngredientesFragment: Fragment() {
+class IngredientesFragment : Fragment() {
 
     interface onIngredienteSelectedListener {
         fun onSelect(ingrediente: Ingrediente)
 
     }
 
-    private var listener: onIngredienteSelectedListener? =null // este listener va tener el evlaor de la interfacxe q va reaccioanr cuando alguien le da clikc
+    private var listener: onIngredienteSelectedListener? =
+        null // este listener va tener el evlaor de la interfacxe q va reaccioanr cuando alguien le da clikc
 
     override fun onAttach(context: Context) {// se va ejecutar apenas adjuntes un fragment con un activity 0000000
         super.onAttach(context)
@@ -32,6 +33,7 @@ class IngredientesFragment: Fragment() {
 
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,17 +47,19 @@ class IngredientesFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
-        val rviProducts = view.findViewById<RecyclerView>(R.id.rviIngredientes)//metodo que se llama luego de crearse totalmente el fragmnet
-        var ascasc=rviProducts
-        ascasc.adapter = IngredientesListAdapter(RecetasManager().getIngredientes(),this,{ //Esta clase permite mostrar la lista de productos en el recicler view
-                ingrediente:Ingrediente ->
-            Log.i("ProductFragment",ingrediente.nombre)
-            listener?.onSelect(ingrediente) // PARA PASAR A OTRO ACTIVITY
-        })
+        val rviProducts =
+            view.findViewById<RecyclerView>(R.id.rviIngredientes)//metodo que se llama luego de crearse totalmente el fragmnet
+        var ascasc = rviProducts
+        ascasc.adapter = IngredientesListAdapter(
+            RecetasManager().getInstance().getIngredientes(),
+            this,
+            { //Esta clase permite mostrar la lista de productos en el recicler view
+                    ingrediente: Ingrediente ->
+                Log.i("ProductFragment", ingrediente.nombre)
+                listener?.onSelect(ingrediente) // PARA PASAR A OTRO ACTIVITY
+            })
 
     }
-
 
 
 }

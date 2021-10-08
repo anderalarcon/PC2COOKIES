@@ -148,11 +148,15 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
         recetasManager?.addReceta(newRecipe)
         println(recetasManager?.getRecetas()?.size)
         input.setText("")
+        recetasManager?.vaciarIngredientes()
+        recetasManager?.llenarIngredientes()
     }
 
     override fun onSelect(ingrediente: Ingrediente) {
         //ingredientexd = ingrediente.nombre
-        IngredientesAux.add(Ingrediente(ingrediente.nombre))
+        IngredientesAux.add(ingrediente)
+        recetasManager?.deleteIngrediente(ingrediente)
+
         changetoRegistrarReceta()
         Toast.makeText(this, "Seleccionó: " + ingrediente.nombre, Toast.LENGTH_SHORT).show()
     }
