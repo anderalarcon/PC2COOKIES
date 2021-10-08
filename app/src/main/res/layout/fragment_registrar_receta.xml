@@ -68,10 +68,19 @@
         </LinearLayout>
 
         <ListView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
             android:id="@+id/lviIngredientesAgregar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+
+            android:outlineAmbientShadowColor="@color/teal_200"
+            android:outlineSpotShadowColor="@color/teal_200"
+            android:cacheColorHint="@color/teal_200"
+            android:backgroundTint="@color/teal_200"
+
+
 
             />
 

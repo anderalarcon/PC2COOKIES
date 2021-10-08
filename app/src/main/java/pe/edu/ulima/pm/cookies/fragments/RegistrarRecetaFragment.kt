@@ -1,6 +1,7 @@
 package pe.edu.ulima.pm.cookies.fragments
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -40,10 +41,12 @@ class RegistrarRecetaFragment(val ingreds: ArrayList<Ingrediente>) : Fragment() 
 
         val v = inflater.inflate(R.layout.fragment_registrar_receta, container, false)
         val lay1 = v.findViewById<ListView>(R.id.lviIngredientesAgregar)
+
         val adaptador: ArrayAdapter<String> =
-            ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, listAux)
+            ArrayAdapter(requireContext(), R.layout.row , listAux)
 
         lay1.setAdapter(adaptador)
+
         return v
 
     }
