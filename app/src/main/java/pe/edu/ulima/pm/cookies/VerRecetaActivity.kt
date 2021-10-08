@@ -19,11 +19,7 @@ class VerRecetaActivity : AppCompatActivity() {
             print("ingrediente lista:" + i)
         }
         println("pasa 2")
-        val listAux: ArrayList<String> = ArrayList()
-        listAux.add("papa1")
-        listAux.add("papa2")
-        listAux.add("papa3")
-        listAux.add("papa4")
+
 
         val lay1 = findViewById<ListView>(R.id.lviIngredientes)
         val adaptador: ArrayAdapter<String> =
