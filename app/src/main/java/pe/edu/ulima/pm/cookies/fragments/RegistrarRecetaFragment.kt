@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import pe.edu.ulima.pm.cookies.R
 import pe.edu.ulima.pm.cookies.models.Ingrediente
@@ -40,14 +41,15 @@ class RegistrarRecetaFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
        val butGuardar=view.findViewById<Button>(R.id.butGuardarReceta)
-
-  /*      val input=view.findViewById<EditText>(R.id.EdtNombreReceta)
-        val list= arrayListOf<Ingrediente>()
-        list.add(Ingrediente("qwe"))
-        val newRecipe=Receta(1,input.text.toString(),"probando",list,"test")*/
+        val input=view.findViewById<EditText>(R.id.EdtNombreReceta)
         butGuardar.setOnClickListener{
-            listener?.agregarReceta()
-            listener?.onClickbtnGuardar()
+            if(input.text.toString()!=""){
+                listener?.agregarReceta()
+                listener?.onClickbtnGuardar()
+            }else{
+                Toast.makeText(context,"Ingresa el nombre de la receta",Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 }

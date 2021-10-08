@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import pe.edu.ulima.pm.cookies.R
 import pe.edu.ulima.pm.cookies.models.Receta
 
@@ -46,6 +47,11 @@ class RecetaListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {//ATRIBUTOS
         holder.tviRecetaName.text = RecetaList[position].nombre
         holder.tviNombreUsuario.text = RecetaList[position].usuario
+
+        Glide.with(fragment).load(RecetaList[position].imagen)
+            /* .sizeMultiplier(0.2f)*/
+            .fitCenter()
+            .into(holder.iviRecetaImage)//quiero cargar ese url y ponerlo en mi productimg
     }
 
     override fun getItemCount(): Int {//CUANTOS SON

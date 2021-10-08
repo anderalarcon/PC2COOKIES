@@ -55,23 +55,23 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
         if (RecetasManager().getInstance().getRecetas().size == 0) {
             var r1: Receta = Receta(
                 1,
-                "Recetita 1",
-                "Ejemplo",
+                "Receta 1",
+                "Ander",
                 listOf(
                     RecetasManager().getInstance().getIngredientes().get(0),
                     RecetasManager().getInstance().getIngredientes().get(1)
                 ),
-                "test"
+                "https://recetinas.com/wp-content/uploads/2017/09/cookiess-de-chocolate.jpg"
             )
             var r2: Receta = Receta(
                 2,
-                "Recetita 2",
-                "Ejemplo",
+                "Receta 2",
+                "Rolonio Jr",
                 listOf(
                     RecetasManager().getInstance().getIngredientes().get(0),
                     RecetasManager().getInstance().getIngredientes().get(1)
                 ),
-                "test2"
+                "https://www.altavoz.net/altavoz/site/artic/20200217/imag/xfoto_0000000220200217101506.jpg.pagespeed.ic.nuXkFIntqC.webp"
             )
             recetasManager?.addReceta(r1)
             recetasManager?.addReceta(r2)
@@ -101,16 +101,9 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
     override fun onSelect(receta: Receta) {
         print("selecciono receta")
         val listIngredientes: ArrayList<String> = ArrayList()
-        println("xd: " + receta.ingredientes.toString())
-        println("nombre: " + receta.nombre)
-        println("usuario: " + receta.usuario)
         for (i in receta.ingredientes) {
             listIngredientes.add(i.nombre)
         }
-        for (i in listIngredientes) {
-            println("ingrediente lista:" + i)
-        }
-
         val bundle: Bundle = Bundle()//Almacenamos data
         bundle.putString("id", receta.id.toString())
         bundle.putString("nombre", receta.nombre.toString())
@@ -131,13 +124,13 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
     }
 
     override fun agregarReceta() {
+        var random=recetasManager?.getRandom()
         val list = arrayListOf<Ingrediente>()
         val input = findViewById<EditText>(R.id.EdtNombreReceta)
-        val newRecipe = Receta(1, input.text.toString(), "ander", list, "qwe")
-
+        val newRecipe = Receta(1, input.text.toString(), usuario!!, list, random!!)
         recetasManager?.addReceta(newRecipe)
-
         println(recetasManager?.getRecetas()?.size)
+        input.setText("")
     }
 
 
