@@ -26,6 +26,7 @@ class RecetasFragment : Fragment() {
         super.onAttach(context)
         listener = context as? onRecetaSelectedListener
 
+
     }
 
 

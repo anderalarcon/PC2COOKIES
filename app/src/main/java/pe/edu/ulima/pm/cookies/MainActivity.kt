@@ -1,8 +1,11 @@
 package pe.edu.ulima.pm.cookies
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import pe.edu.ulima.pm.cookies.fragments.RecetasFragment
@@ -10,6 +13,7 @@ import pe.edu.ulima.pm.cookies.models.Receta
 
 class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListener {
     private val fragments = mutableListOf<Fragment>()
+    private lateinit var etNombre: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,20 +35,25 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
 
         ft.commit()
 
-          //recibimos la data
-           val username=intent.getBundleExtra("data")?.getString("nombre")
-           findViewById<TextView>(R.id.tviUser).text=username
+        //recibimos la data
+        val username = intent.getBundleExtra("data")?.getString("nombre")
+        findViewById<TextView>(R.id.tviUser2).text = username
+
+
+        // new logic
+        etNombre = findViewById(R.id.tviUser2)
+        val intent: Intent = Intent()
+        val butLogin: Button = findViewById(R.id.butAgregar)
+        butLogin.setOnClickListener{
+            val bundle:Bundle= Bundle()//Almacenamos data
+            bundle.putString("nombre",etNombre.text.toString())
+
+            intent.setClass(this, RegistrarRecetaActivity::class.java) //pasamos next activity
+            intent.putExtra("data",bundle)//le ponemos al intent que es el que pasa
+            startActivity(intent)
+        }
     }
 
-
-/*    private fun changeRecetaDetailFragment(receta:Receta) {
-        val fragment=fragments[1]
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.main, fragment)
-        ft.commit()
-
-
-    }*/
 
     override fun onSelect(receta: Receta) {
         val listIngredientes: ArrayList<String> = ArrayList()
