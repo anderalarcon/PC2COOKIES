@@ -6,7 +6,7 @@ class RecetasManager {
     private val mIngredientes = arrayListOf<Ingrediente>()
     private val mRecetas = arrayListOf<Receta>()
 
-    init {
+    init {//Inicializamos valores iniciales
         mIngredientes.add(Ingrediente("Mantequilla"))
         mIngredientes.add(Ingrediente("Azucar"))
         mIngredientes.add(Ingrediente("Harina"))
@@ -14,11 +14,11 @@ class RecetasManager {
         mIngredientes.add(Ingrediente("Polvo de Hornear"))
     }
 
-    companion object {
+    companion object {//reemplzao de static | Patron Singleton
         private var instance : RecetasManager? = null
     }
 
-    fun getInstance() : RecetasManager {
+    fun getInstance() : RecetasManager {//Inicializamos
         if (instance == null) {
             instance = RecetasManager()
         }
@@ -26,8 +26,6 @@ class RecetasManager {
     }
 
     fun getRecetas() : List<Receta> {
-        mRecetas.add(Receta(1,"Galletas de mantequilla","Roger",mIngredientes))
-        mRecetas.add(Receta(2,"Galletas de mantequilla2","Roger2",mIngredientes))
         return mRecetas
     }
 

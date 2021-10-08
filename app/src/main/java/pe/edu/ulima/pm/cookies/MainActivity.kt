@@ -9,7 +9,9 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import pe.edu.ulima.pm.cookies.fragments.RecetasFragment
+import pe.edu.ulima.pm.cookies.models.Ingrediente
 import pe.edu.ulima.pm.cookies.models.Receta
+import pe.edu.ulima.pm.cookies.models.RecetasManager
 
 class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListener {
     private val fragments = mutableListOf<Fragment>()
@@ -25,9 +27,11 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
         setContentView(R.layout.activity_recetas)
 
 
+
         //Recibimos las recetas en duro
         fragments.add(RecetasFragment())
-        /*   fragments.add(RecetaDetailFragment())*/
+
+
 
         //Renderizamos por primera vez el fragment en la posicion 0 osea recetas
         val ft = supportFragmentManager.beginTransaction()
@@ -40,8 +44,10 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
         findViewById<TextView>(R.id.tviUser2).text = username
 
 
+
+
         // new logic
-        etNombre = findViewById(R.id.tviUser2)
+     /*   etNombre = findViewById(R.id.tviUser2)
         val intent: Intent = Intent()
         val butLogin: Button = findViewById(R.id.butAgregar)
         butLogin.setOnClickListener{
@@ -51,8 +57,26 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
             intent.setClass(this, RegistrarRecetaActivity::class.java) //pasamos next activity
             intent.putExtra("data",bundle)//le ponemos al intent que es el que pasa
             startActivity(intent)
-        }
+        }*/
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     override fun onSelect(receta: Receta) {
