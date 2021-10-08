@@ -5,20 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import pe.edu.ulima.pm.cookies.R
 import pe.edu.ulima.pm.cookies.models.Ingrediente
 import pe.edu.ulima.pm.cookies.models.Receta
 
-class RegistrarRecetaFragment:Fragment() {
+class RegistrarRecetaFragment(val ingreds:ArrayList<Ingrediente>):Fragment() {
     interface interfRegistrarReceta{
         fun onClickbtnGuardar()
         fun agregarReceta()
+        fun onClickBtnIngredientes()
 
     }
+
+    val listAux: ArrayList<String> = ArrayList()
 
     private var listener:interfRegistrarReceta?=null
 
@@ -33,7 +34,17 @@ class RegistrarRecetaFragment:Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_registrar_receta,container,false)
+        for ( i in ingreds){
+            listAux.add(i.nombre)
+        }
+
+        val v = inflater.inflate(R.layout.fragment_registrar_receta,container,false)
+        val lay1 = v.findViewById<ListView>(R.id.lviIngredientesAgregar)
+        val adaptador: ArrayAdapter<String> =
+            ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, listAux)
+
+        lay1.setAdapter(adaptador)
+        return v
 
     }
 
@@ -41,7 +52,12 @@ class RegistrarRecetaFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
        val butGuardar=view.findViewById<Button>(R.id.butGuardarReceta)
+        val btnIngrediente = view.findViewById<Button>(R.id.butAgregarIngrediente)
+
         val input=view.findViewById<EditText>(R.id.EdtNombreReceta)
+        btnIngrediente.setOnClickListener{
+            listener?.onClickBtnIngredientes()
+        }
         butGuardar.setOnClickListener{
             if(input.text.toString()!=""){
                 listener?.agregarReceta()

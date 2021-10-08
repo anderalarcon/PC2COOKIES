@@ -7,14 +7,17 @@ import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import pe.edu.ulima.pm.cookies.Adapter.IngredientesListAdapter
+import pe.edu.ulima.pm.cookies.fragments.IngredientesFragment
 import pe.edu.ulima.pm.cookies.fragments.RecetasFragment
 import pe.edu.ulima.pm.cookies.fragments.RegistrarRecetaFragment
 import pe.edu.ulima.pm.cookies.models.Ingrediente
 import pe.edu.ulima.pm.cookies.models.Receta
 import pe.edu.ulima.pm.cookies.models.RecetasManager
 
-class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListener,
+class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListener, IngredientesFragment.onIngredienteSelectedListener,
     RegistrarRecetaFragment.interfRegistrarReceta {
     var fragmentActual: String = "Main"
     val fragments = mutableListOf<Fragment>()
@@ -23,6 +26,7 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
     var recetasManager: RecetasManager? = null
     var Ingredientes = ArrayList<Ingrediente>()
     var NuevaRecetaNombre: String? = null
+    var IngredientesAux = ArrayList<Ingrediente>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +45,8 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
         if (fragments.size == 0) {
             fragments.add(RecetasFragment())
         }
-        fragments.add(RegistrarRecetaFragment())
+        //fragments.add(RegistrarRecetaFragment())
+        fragments.add(IngredientesFragment())
 
         recetasManager = RecetasManager().getInstance()
 
@@ -89,10 +94,21 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
 
     }
 
+    private fun changeSelectIngredienteFragment(){
+        println("SelectIngredienteFragment")
+        //val fragment = AccountFragment(this)
+        val fragment = fragments[1]
+        val ft = supportFragmentManager.beginTransaction()
+        //remplazar un nuevo fragment
+        ft.replace(R.id.main,fragment)
+        ft.commit()
+    }
+
     private fun changetoRegistrarReceta() {
 
+        val fragment = RegistrarRecetaFragment(IngredientesAux)
         val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.main, fragments[1])
+        ft.replace(R.id.main, fragment /*fragments[1]*/)
         ft.commit()
         fragmentActual = "nueva receta"
 
@@ -127,10 +143,21 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
         var random=recetasManager?.getRandom()
         val list = arrayListOf<Ingrediente>()
         val input = findViewById<EditText>(R.id.EdtNombreReceta)
-        val newRecipe = Receta(1, input.text.toString(), usuario!!, list, random!!)
+        val newRecipe = Receta(1, input.text.toString(), usuario!!, IngredientesAux, random!!)
         recetasManager?.addReceta(newRecipe)
         println(recetasManager?.getRecetas()?.size)
         input.setText("")
+    }
+
+    override fun onSelect(ingrediente: Ingrediente) {
+        //ingredientexd = ingrediente.nombre
+        IngredientesAux.add(Ingrediente(ingrediente.nombre))
+        changetoRegistrarReceta()
+        Toast.makeText(this,"Seleccionó: " + ingrediente.nombre, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onClickBtnIngredientes() {
+        changeSelectIngredienteFragment()
     }
 
 
