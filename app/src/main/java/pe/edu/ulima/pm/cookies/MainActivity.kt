@@ -3,6 +3,7 @@ package pe.edu.ulima.pm.cookies
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import pe.edu.ulima.pm.cookies.fragments.RecetasFragment
 import pe.edu.ulima.pm.cookies.models.Receta
@@ -30,9 +31,9 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
 
         ft.commit()
 
-        /*   //recibimos la data
+          //recibimos la data
            val username=intent.getBundleExtra("data")?.getString("nombre")
-           findViewById<TextView>(R.id.tviUser).text=username*/
+           findViewById<TextView>(R.id.tviUser).text=username
     }
 
 
