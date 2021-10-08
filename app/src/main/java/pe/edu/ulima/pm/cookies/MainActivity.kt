@@ -17,7 +17,8 @@ import pe.edu.ulima.pm.cookies.models.Ingrediente
 import pe.edu.ulima.pm.cookies.models.Receta
 import pe.edu.ulima.pm.cookies.models.RecetasManager
 
-class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListener, IngredientesFragment.onIngredienteSelectedListener,
+class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListener,
+    IngredientesFragment.onIngredienteSelectedListener,
     RegistrarRecetaFragment.interfRegistrarReceta {
     var fragmentActual: String = "Main"
     val fragments = mutableListOf<Fragment>()
@@ -94,13 +95,13 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
 
     }
 
-    private fun changeSelectIngredienteFragment(){
+    private fun changeSelectIngredienteFragment() {
         println("SelectIngredienteFragment")
         //val fragment = AccountFragment(this)
         val fragment = fragments[1]
         val ft = supportFragmentManager.beginTransaction()
         //remplazar un nuevo fragment
-        ft.replace(R.id.main,fragment)
+        ft.replace(R.id.main, fragment)
         ft.commit()
     }
 
@@ -140,7 +141,7 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
     }
 
     override fun agregarReceta() {
-        var random=recetasManager?.getRandom()
+        var random = recetasManager?.getRandom()
         val list = arrayListOf<Ingrediente>()
         val input = findViewById<EditText>(R.id.EdtNombreReceta)
         val newRecipe = Receta(1, input.text.toString(), usuario!!, IngredientesAux, random!!)
@@ -153,7 +154,7 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
         //ingredientexd = ingrediente.nombre
         IngredientesAux.add(Ingrediente(ingrediente.nombre))
         changetoRegistrarReceta()
-        Toast.makeText(this,"Seleccionó: " + ingrediente.nombre, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Seleccionó: " + ingrediente.nombre, Toast.LENGTH_SHORT).show()
     }
 
     override fun onClickBtnIngredientes() {
