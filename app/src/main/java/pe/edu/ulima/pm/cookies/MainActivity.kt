@@ -28,6 +28,9 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
     var Ingredientes = ArrayList<Ingrediente>()
     var NuevaRecetaNombre: String? = null
     var IngredientesAux = ArrayList<Ingrediente>()
+    var IngredientesAux2 = ArrayList<Ingrediente>()
+    var cantidad = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,6 +89,7 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
     }
 
     private fun changeRecetasMain() {
+
         val fragment = fragments[0]
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.main, fragment)
@@ -103,13 +107,13 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
         //remplazar un nuevo fragment
         ft.replace(R.id.main, fragment)
         ft.commit()
+        fragmentActual = "ingredientes"
     }
 
     private fun changetoRegistrarReceta() {
-
-        val fragment = RegistrarRecetaFragment(IngredientesAux)
+        val fragment = RegistrarRecetaFragment(this.IngredientesAux)
         val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.main, fragment /*fragments[1]*/)
+        ft.replace(R.id.main, fragment )
         ft.commit()
         fragmentActual = "nueva receta"
 
@@ -120,6 +124,7 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
         val listIngredientes: ArrayList<String> = ArrayList()
         for (i in receta.ingredientes) {
             listIngredientes.add(i.nombre)
+            println("Ingredientes:" + i.nombre)
         }
         val bundle: Bundle = Bundle()//Almacenamos data
         bundle.putString("id", receta.id.toString())
@@ -133,18 +138,26 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
     }
 
     override fun onClick() {
+        //IngredientesAux.clear()
+        IngredientesAux.removeAll(IngredientesAux)
         changetoRegistrarReceta()
     }
 
     override fun onClickbtnGuardar() {
         changeRecetasMain()
+        //
     }
 
     override fun agregarReceta() {
         var random = recetasManager?.getRandom()
-        val list = arrayListOf<Ingrediente>()
+        var list = arrayListOf<Ingrediente>()
+        for(i in IngredientesAux){
+            list.add(i)
+        }
+
         val input = findViewById<EditText>(R.id.EdtNombreReceta)
-        val newRecipe = Receta(1, input.text.toString(), usuario!!, IngredientesAux, random!!)
+        cantidad = cantidad?.plus(1)
+        val newRecipe = Receta(cantidad, input.text.toString(), usuario!!, list, random!!)
         recetasManager?.addReceta(newRecipe)
         println(recetasManager?.getRecetas()?.size)
         input.setText("")
@@ -155,6 +168,7 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
     override fun onSelect(ingrediente: Ingrediente) {
         //ingredientexd = ingrediente.nombre
         IngredientesAux.add(ingrediente)
+        IngredientesAux2.add(ingrediente)
         recetasManager?.deleteIngrediente(ingrediente)
 
         changetoRegistrarReceta()

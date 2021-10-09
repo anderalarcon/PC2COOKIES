@@ -35,7 +35,7 @@ class RegistrarRecetaFragment(val ingreds: ArrayList<Ingrediente>) : Fragment() 
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        for (i in ingreds) {
+        for (i in ingreds) {//al principio es una lista vacia y luego al selecionar se va cambiando por eso cambia a todos ya que en el main utilizamos el mismo
             listAux.add(i.nombre)
         }
 

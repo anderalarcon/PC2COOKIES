@@ -48,15 +48,15 @@ class IngredientesFragment : Fragment() {
 
 
         val rviProducts =
-            view.findViewById<RecyclerView>(R.id.rviIngredientes)//metodo que se llama luego de crearse totalmente el fragmnet
+            view.findViewById<RecyclerView>(R.id.rviIngredientes)
         var ascasc = rviProducts
         ascasc.adapter = IngredientesListAdapter(
             RecetasManager().getInstance().getIngredientes(),
             this,
-            { //Esta clase permite mostrar la lista de productos en el recicler view
+            {
                     ingrediente: Ingrediente ->
                 Log.i("ProductFragment", ingrediente.nombre)
-                listener?.onSelect(ingrediente) // PARA PASAR A OTRO ACTIVITY
+                listener?.onSelect(ingrediente)
             })
 
     }

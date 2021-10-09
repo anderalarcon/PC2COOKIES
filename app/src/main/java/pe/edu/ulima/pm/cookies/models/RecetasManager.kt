@@ -44,9 +44,16 @@ class RecetasManager {
         mRecetas.add(receta)
     }
 
-    fun getReceta(id: Int): Receta? {
-        // Debe implementarlo !!!
-        return null
+    fun getReceta(id: Int): Receta? {//Tenemos que darle ID
+        val recetas=getRecetas()
+        var recetaabuscar:Receta?=null
+
+        for (i in recetas){
+            if(i.id==id){
+                recetaabuscar=i
+            }
+        }
+        return recetaabuscar
     }
 
     fun getIngredientes(): List<Ingrediente> {

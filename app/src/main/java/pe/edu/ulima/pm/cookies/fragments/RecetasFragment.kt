@@ -61,7 +61,14 @@ class RecetasFragment : Fragment() {
             RecetasManager().getInstance().getRecetas(),
             this
         ) { receta: Receta ->
-            Log.i("RecetaFragment", receta.nombre)
+      /*      Log.i("RecetaFragment", receta.nombre)
+            Log.i("RecetaFragment", receta.usuario)
+            Log.i("RecetaFragment", receta.id.toString())
+
+            for(i in receta.ingredientes){
+                println(i.nombre)
+            }*/
+            println("------------------------------")
             listener?.onSelect(receta)
         }
 
