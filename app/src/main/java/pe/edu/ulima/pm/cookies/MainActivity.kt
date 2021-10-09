@@ -22,15 +22,12 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
     RegistrarRecetaFragment.interfRegistrarReceta {
     var fragmentActual: String = "Main"
     val fragments = mutableListOf<Fragment>()
-    lateinit var etNombre: TextView
     var usuario: String? = null
     var recetasManager: RecetasManager? = null
     var Ingredientes = ArrayList<Ingrediente>()
-    var NuevaRecetaNombre: String? = null
     var IngredientesAux = ArrayList<Ingrediente>()
     var IngredientesAux2 = ArrayList<Ingrediente>()
     var cantidad = 0
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,28 +59,35 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
         ft.commit()
         // añadiendo recetas de ejemplo
         if (RecetasManager().getInstance().getRecetas().size == 0) {
+            var list = arrayListOf<Ingrediente>()
+            list.add(Ingrediente("Harina"))
+            list.add(Ingrediente("Huevo"))
+
+            var list2 = arrayListOf<Ingrediente>()
+            list2.add(Ingrediente("Azucar"))
+            list2.add(Ingrediente("Amor"))
+
             var r1: Receta = Receta(
                 1,
                 "Receta 1",
                 "Ander",
-                listOf(
-                    RecetasManager().getInstance().getIngredientes().get(0),
-                    RecetasManager().getInstance().getIngredientes().get(1)
-                ),
+                list,
                 "https://recetinas.com/wp-content/uploads/2017/09/cookiess-de-chocolate.jpg"
             )
             var r2: Receta = Receta(
                 2,
                 "Receta 2",
                 "Rolonio Jr",
-                listOf(
-                    RecetasManager().getInstance().getIngredientes().get(0),
-                    RecetasManager().getInstance().getIngredientes().get(1)
-                ),
+                list2,
                 "https://www.altavoz.net/altavoz/site/artic/20200217/imag/xfoto_0000000220200217101506.jpg.pagespeed.ic.nuXkFIntqC.webp"
             )
             recetasManager?.addReceta(r1)
             recetasManager?.addReceta(r2)
+        }
+
+        if (fragmentActual == "Main") {
+            recetasManager?.vaciarIngredientes()
+            recetasManager?.llenarIngredientes()
         }
 
     }
@@ -113,7 +117,7 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
     private fun changetoRegistrarReceta() {
         val fragment = RegistrarRecetaFragment(this.IngredientesAux)
         val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.main, fragment )
+        ft.replace(R.id.main, fragment)
         ft.commit()
         fragmentActual = "nueva receta"
 
@@ -151,7 +155,7 @@ class MainActivity : AppCompatActivity(), RecetasFragment.onRecetaSelectedListen
     override fun agregarReceta() {
         var random = recetasManager?.getRandom()
         var list = arrayListOf<Ingrediente>()
-        for(i in IngredientesAux){
+        for (i in IngredientesAux) {
             list.add(i)
         }
 

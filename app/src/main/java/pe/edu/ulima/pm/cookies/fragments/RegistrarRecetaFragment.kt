@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import pe.edu.ulima.pm.cookies.R
 import pe.edu.ulima.pm.cookies.models.Ingrediente
@@ -70,5 +71,7 @@ class RegistrarRecetaFragment(val ingreds: ArrayList<Ingrediente>) : Fragment() 
             }
 
         }
+
+
     }
 }

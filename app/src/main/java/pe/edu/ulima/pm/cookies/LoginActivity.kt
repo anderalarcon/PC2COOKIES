@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
                 intent.setClass(this, MainActivity::class.java) //pasamos next activity
                 intent.putExtra("data",bundle)//le ponemos al intent que es el que pasa
                 startActivity(intent)
+                etNombre.setText("")
             }else{
                 Toast.makeText(this,"Ingresa tu nombre",Toast.LENGTH_SHORT).show()
             }
@@ -42,6 +43,8 @@ class LoginActivity : AppCompatActivity() {
 
 
         }
+
+
 
 
     }
